@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard &mdash; SMK Programmer Hasan</title>
+    <title>Dashboard &mdash; MAN 1 Kendal</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/school.svg') }}" type="image/x-icon">
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -44,12 +44,14 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ route('logout') }}" style="cursor: pointer" onclick="event.preventDefault();
+                            <a href="{{ route('logout') }}" style="cursor: pointer"
+                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
                                 class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
                                 @csrf
                             </form>
                         </div>
@@ -59,10 +61,10 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">SMK Programmer Hasan</a>
+                        <a href="index.html">MAN 1 Kendal</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">SMK</a>
+                        <a href="index.html">MAN 1</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">MAIN MENU</li>
@@ -70,79 +72,80 @@
                                 href="{{ route('admin.dashboard.index') }}"><i class="fas fa-tachometer-alt"></i>
                                 <span>Dashboard</span></a></li>
                         @can('posts.index')
-                        <li class="{{ setActive('admin/post') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-book-open"></i>
-                                <span>Berita</span></a></li>
+                            <li class="{{ setActive('admin/post') }}"><a class="nav-link" href="#"><i
+                                        class="fas fa-book-open"></i>
+                                    <span>Berita</span></a></li>
                         @endcan
 
                         @can('tags.index')
-                        <li class="{{ setActive('admin/tag') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-tags"></i> <span>Tags</span></a>
-                        </li>
+                            <li class="{{ setActive('admin/tag') }}"><a class="nav-link" href="#"><i
+                                        class="fas fa-tags"></i> <span>Tags</span></a>
+                            </li>
                         @endcan
 
                         @can('categories.index')
-                        <li class="{{ setActive('admin/category') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-folder"></i>
-                                <span>Kategori</span></a></li>
+                            <li class="{{ setActive('admin/category') }}"><a class="nav-link" href="#"><i
+                                        class="fas fa-folder"></i>
+                                    <span>Kategori</span></a></li>
                         @endcan
 
                         @can('events.index')
-                        <li class="{{ setActive('admin/event') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-bell"></i>
-                                <span>Agenda</span></a></li>
+                            <li class="{{ setActive('admin/event') }}"><a class="nav-link" href="#"><i
+                                        class="fas fa-bell"></i>
+                                    <span>Agenda</span></a></li>
                         @endcan
 
-                        @if(auth()->user()->can('photos.index') || auth()->user()->can('videos.index'))
-                        <li class="menu-header">GALERI</li>
+                        @if (auth()->user()->can('photos.index') || auth()->user()->can('videos.index'))
+                            <li class="menu-header">GALERI</li>
                         @endif
 
                         @can('photos.index')
-                        <li class="{{ setActive('admin/photo') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-image"></i>
-                                <span>Foto</span></a></li>
+                            <li class="{{ setActive('admin/photo') }}"><a class="nav-link" href="#"><i
+                                        class="fas fa-image"></i>
+                                    <span>Foto</span></a></li>
                         @endcan
 
                         @can('videos.index')
-                        <li class="{{ setActive('admin/video') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-video"></i>
-                                <span>Video</span></a></li>
+                            <li class="{{ setActive('admin/video') }}"><a class="nav-link" href="#"><i
+                                        class="fas fa-video"></i>
+                                    <span>Video</span></a></li>
                         @endcan
 
-                        @if(auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
-                        <li class="menu-header">PENGATURAN</li>
+                        @if (auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
+                            <li class="menu-header">PENGATURAN</li>
                         @endif
 
                         @can('sliders.index')
-                        <li class="{{ setActive('admin/slider') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-laptop"></i>
-                                <span>Sliders</span></a></li>
+                            <li class="{{ setActive('admin/slider') }}"><a class="nav-link" href="#"><i
+                                        class="fas fa-laptop"></i>
+                                    <span>Sliders</span></a></li>
                         @endcan
 
                         <li
-                            class="dropdown {{ setActive('admin/role'). setActive('admin/permission'). setActive('admin/user') }}">
-                            @if(auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
+                            class="dropdown {{ setActive('admin/role') . setActive('admin/permission') . setActive('admin/user') }}">
+                            @if (auth()->user()->can('roles.index') || auth()->user()->can('permission.index') || auth()->user()->can('users.index'))
                                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>Users
-                                Management</span></a>
+                                        Management</span></a>
                             @endif
 
                             <ul class="dropdown-menu">
                                 @can('roles.index')
                                     <li class="{{ setActive('admin/role') }}"><a class="nav-link"
-                                        href="{{ route('admin.role.index') }}"><i class="fas fa-unlock"></i> Roles</a>
-                                </li>
+                                            href="{{ route('admin.role.index') }}"><i class="fas fa-unlock"></i>
+                                            Roles</a>
+                                    </li>
                                 @endcan
 
                                 @can('permissions.index')
                                     <li class="{{ setActive('admin/permission') }}"><a class="nav-link"
-                                    href="{{ route('admin.permission.index') }}"><i class="fas fa-key"></i>
-                                    Permissions</a></li>
+                                            href="{{ route('admin.permission.index') }}"><i class="fas fa-key"></i>
+                                            Permissions</a></li>
                                 @endcan
 
                                 @can('users.index')
                                     <li class="{{ setActive('admin/user') }}"><a class="nav-link"
-                                        href="#"><i class="fas fa-users"></i> Users</a>
-                                </li>
+                                            href="{{ route('admin.user.index') }}"><i class="fas fa-users"></i> Users</a>
+                                    </li>
                                 @endcan
                             </ul>
                         </li>
@@ -155,7 +158,8 @@
 
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2024 <div class="bullet"></div> SMK Programmer Hasan <div class="bullet"></div> All Rights
+                    Copyright &copy; 2025 <div class="bullet"></div> MAN 1 Kendal<div class="bullet"></div>
+                    All Rights
                     Reserved.
                 </div>
                 <div class="footer-right">
@@ -181,7 +185,7 @@
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script>
         //active select2
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('select').select2({
                 theme: 'bootstrap4',
                 width: 'style',
@@ -189,29 +193,30 @@
         });
 
         //flash message
-        @if(session()->has('success'))
-        swal({
-            type: "success",
-            icon: "success",
-            title: "BERHASIL!",
-            text: "{{ session('success') }}",
-            timer: 1500,
-            showConfirmButton: false,
-            showCancelButton: false,
-            buttons: false,
-        });
-        @elseif(session()->has('error'))
-        swal({
-            type: "error",
-            icon: "error",
-            title: "GAGAL!",
-            text: "{{ session('error') }}",
-            timer: 1500,
-            showConfirmButton: false,
-            showCancelButton: false,
-            buttons: false,
-        });
+        @if (session()->has('success'))
+            swal({
+                type: "success",
+                icon: "success",
+                title: "BERHASIL!",
+                text: "{{ session('success') }}",
+                timer: 1500,
+                showConfirmButton: false,
+                showCancelButton: false,
+                buttons: false,
+            });
+        @elseif (session()->has('error'))
+            swal({
+                type: "error",
+                icon: "error",
+                title: "GAGAL!",
+                text: "{{ session('error') }}",
+                timer: 1500,
+                showConfirmButton: false,
+                showCancelButton: false,
+                buttons: false,
+            });
         @endif
     </script>
 </body>
+
 </html>
