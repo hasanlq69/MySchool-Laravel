@@ -65,7 +65,7 @@ class PostController extends Controller
 
         //upload image
         $image = $request->file('image');
-        $image->storeAs('public/posts', $image->hashName());
+        $image->storeAs('posts', $image->hashName());
 
         $post = Post::create([
             'image'       => $image->hashName(),
@@ -130,11 +130,11 @@ class PostController extends Controller
         } else {
 
             //remove old image
-            Storage::disk('local')->delete('public/posts/'.$post->image);
+            Storage::disk('public')->delete('posts/'.basename($post->image));
 
             //upload new image
             $image = $request->file('image');
-            $image->storeAs('public/posts', $image->hashName());
+            $image->storeAs('posts', $image->hashName());
 
             $post = Post::findOrFail($post->id);
             $post->update([
@@ -168,7 +168,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $image = Storage::disk('local')->delete('public/posts/'.basename($post->image));
+        $image = Storage::disk('public')->delete('posts/'.basename($post->image));
         $post->delete();
 
         if($post){
