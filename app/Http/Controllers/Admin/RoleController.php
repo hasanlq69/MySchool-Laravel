@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::latest()->when(request()->q, function($roles) {
-            $roles = $roles->where('name', 'like', '%'. request()->q . '%');
+            $roles = $roles->where('name', 'ilike', '%'. request()->q . '%');
         })->paginate(5);
 
         return view('admin.role.index', compact('roles'));

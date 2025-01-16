@@ -27,7 +27,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::latest()->when(request()->q, function($events) {
-            $events = $events->where('title', 'like', '%'. request()->q . '%');
+            $events = $events->where('title', 'ilike', '%'. request()->q . '%');
         })->paginate(10);
 
         return view('admin.event.index', compact('events'));

@@ -100,14 +100,14 @@
                         @endif
 
                         @can('photos.index')
-                            <li class="{{ setActive('admin/photo') }}"><a class="nav-link" href="#"><i
-                                        class="fas fa-image"></i>
+                            <li class="{{ setActive('admin/photo') }}"><a class="nav-link"
+                                    href="{{ route('admin.photo.index') }}"><i class="fas fa-image"></i>
                                     <span>Foto</span></a></li>
                         @endcan
 
                         @can('videos.index')
-                            <li class="{{ setActive('admin/video') }}"><a class="nav-link" href="#"><i
-                                        class="fas fa-video"></i>
+                            <li class="{{ setActive('admin/video') }}"><a class="nav-link"
+                                    href="{{ route('admin.video.index') }}"><i class="fas fa-video"></i>
                                     <span>Video</span></a></li>
                         @endcan
 
@@ -116,8 +116,8 @@
                         @endif
 
                         @can('sliders.index')
-                            <li class="{{ setActive('admin/slider') }}"><a class="nav-link" href="#"><i
-                                        class="fas fa-laptop"></i>
+                            <li class="{{ setActive('admin/slider') }}"><a class="nav-link"
+                                    href="{{ route('admin.slider.index') }}"><i class="fas fa-laptop"></i>
                                     <span>Sliders</span></a></li>
                         @endcan
 

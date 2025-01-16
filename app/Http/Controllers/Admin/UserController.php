@@ -27,7 +27,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->when(request()->q, function($users) {
-            $users = $users->where('name', 'like', '%'. request()->q . '%');
+            $users = $users->where('name', 'ilike', '%'. request()->q . '%');
         })->paginate(10);
 
         return view('admin.user.index', compact('users'));

@@ -30,7 +30,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->when(request()->q, function($posts) {
-            $posts = $posts->where('title', 'like', '%'. request()->q . '%');
+            $posts = $posts->where('title', 'ilike', '%'. request()->q . '%');
         })->paginate(10);
 
         return view('admin.post.index', compact('posts'));

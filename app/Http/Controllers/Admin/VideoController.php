@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Video;
+use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class VideoController extends Controller
 {
     /**
      * __construct
@@ -16,7 +15,7 @@ class CategoryController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['permission:categories.index|categories.create|categories.edit|sliders.delete']);
+        $this->middleware(['permission:videos.index|videos.create|videos.edit|videos.delete']);
     }
 
     /**
@@ -26,11 +25,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->when(request()->q, function($categories) {
-            $categories = $categories->where('name', 'ilike', '%'. request()->q . '%');
+        $videos = Video::latest()->when(request()->q, function($videos) {
+            $videos = $videos->where('name', 'ilike', '%'. request()->q . '%');
         })->paginate(10);
 
-        return view('admin.category.index', compact('categories'));
+        return view('admin.video.index', compact('videos'));
     }
 
     /**
@@ -40,7 +39,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.video.create');
     }
 
     /**
@@ -52,20 +51,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:categories'
+            'title' => 'required',
+            'embed' => 'required'
         ]);
 
-        $category = Category::create([
-            'name' => $request->input('name'),
-            'slug' => Str::slug($request->input('name'), '-')
+        $video = Video::create([
+            'title' => $request->input('title'),
+            'embed' => $request->input('embed')
         ]);
 
-        if($category){
+        if($video){
             //redirect dengan pesan sukses
-            return redirect()->route('admin.category.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('admin.video.index')->with(['success' => 'Data Berhasil Disimpan!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('admin.category.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('admin.video.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -75,9 +75,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Video $video)
     {
-        return view('admin.category.edit', compact('category'));
+        return view('admin.video.edit', compact('video'));
     }
 
     /**
@@ -87,24 +87,25 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Video $video)
     {
         $this->validate($request, [
-            'name' => 'required|unique:categories,name,'.$category->id
+            'title' => 'required',
+            'embed' => 'required'
         ]);
 
-        $category = Category::findOrFail($category->id);
-        $category->update([
-            'name' => $request->input('name'),
-            'slug' => Str::slug($request->input('name'), '-')
+        $video = Video::findOrFail($video->id);
+        $video->update([
+            'title' => $request->input('title'),
+            'embed' => $request->input('embed')
         ]);
 
-        if($category){
+        if($video){
             //redirect dengan pesan sukses
-            return redirect()->route('admin.category.index')->with(['success' => 'Data Berhasil Diupdate!']);
+            return redirect()->route('admin.video.index')->with(['success' => 'Data Berhasil Diupdate!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('admin.category.index')->with(['error' => 'Data Gagal Diupdate!']);
+            return redirect()->route('admin.video.index')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
 
@@ -116,10 +117,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $video = Video::findOrFail($id);
+        $video->delete();
 
-        if($category){
+        if($video){
             return response()->json([
                 'status' => 'success'
             ]);
