@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard &mdash; MAN 1 Kendal</title>
+    <title>Dashboard &mdash; My School</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/school.svg') }}" type="image/x-icon">
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -158,7 +158,7 @@
 
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2025 <div class="bullet"></div> MAN 1 Kendal<div class="bullet"></div>
+                    Copyright &copy; 2025 <div class="bullet"></div>My School<div class="bullet"></div>
                     All Rights
                     Reserved.
                 </div>
