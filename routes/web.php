@@ -24,12 +24,7 @@ Route::middleware('auth')->group(function () {
         return redirect()->route('admin.dashboard.index');
     });
 
-    Route::post('/logout', function () {
-        Auth::logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
-        return redirect('/login');
-    })->name('logout');
+
 });
 
 Auth::routes(['register' => false]);
