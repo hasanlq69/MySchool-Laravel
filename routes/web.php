@@ -1,9 +1,35 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
+
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('login');
+
+    Auth::routes(['register' => false]);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard.index');
+    });
+
+    Route::get('/login', function () {
+        return redirect()->route('admin.dashboard.index');
+    });
+
+    Route::post('/logout', function () {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/login');
+    })->name('logout');
 });
 
 Auth::routes(['register' => false]);
