@@ -9,6 +9,8 @@
 
 <h1>School website application built using laravel </h1>
 
+<h4>Admin Page</h4>
+
 <img width="1278" alt="Image" src="https://github.com/user-attachments/assets/ffed0251-a69c-4ed4-8069-a4381d31b940" />
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
