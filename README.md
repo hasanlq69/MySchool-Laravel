@@ -13,6 +13,9 @@
 
 <img width="1278" alt="Image" src="https://github.com/user-attachments/assets/ffed0251-a69c-4ed4-8069-a4381d31b940" />
 
+
+<img width="1278" alt="Screenshot 2025-02-27 at 12 56 25" src="https://github.com/user-attachments/assets/20188d8d-2d68-44a0-a604-c263dcd97749" />
+
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
